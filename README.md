@@ -3,7 +3,7 @@
 
 
 
-Most researchers and engineers already have heavy Python code—simulations, numerical solvers, matrix workloads, data transforms, ML ops—that run slowly on CPUs.
+Most researchers and engineers already have heavy Python code-simulations, numerical solvers, matrix workloads, data transforms, ML ops—that run slowly on CPUs.
 This course teaches you to **accelerate your own real project** using **GPU programming** with **CUDA** and **Triton**.
 
 Over 6 weeks, we will go from **GPU intuition → CUDA fundamentals → memory optimization → real kernels → Triton → a final mini-project**, where you implement and benchmark a GPU-accelerated version of a problem you personally care about.
