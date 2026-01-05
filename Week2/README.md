@@ -1,7 +1,10 @@
 # **Week 2 — Parallel Thinking & CUDA Programming Basics**
 
 This week marks your transition from high-level GPU intuition to **writing your first CUDA code**.
+
 You will learn how to map data-parallel problems onto threads, blocks, and grids. We won't optimize yet.
+
+---
 
 ## **Learning Goals**
 
@@ -11,24 +14,41 @@ By the end of Week 2, you should be able to:
 * Understand how threads compute indices (`threadIdx`, `blockIdx`, `blockDim`)
 * Map Python/Numpy-level operations into CUDA thread-level parallelism
 * Manage host–device memory transfers (basic `cudaMemcpy`)
-* Compile and run CUDA programs using `nvcc` or Colab’s CUDA environment
+* Compile and run CUDA programs using `nvcc` or Colab's CUDA environment
 * Choose grid/block dimensions appropriate for different workloads
 
 This week provides the fundamental skills needed for memory optimization in Week 3.
 
+---
+
 ## **Required Resources**
 
-### **1. NVIDIA CUDA Programming Guide — Chapters 3–4**
+### **1. NVIDIA CUDA C++ Programming Guide — Programming Model & Interface**
 
-These chapters introduce the CUDA execution model and the basic API.
+These sections introduce the CUDA execution model and the basic API.
 
-* Thread hierarchy
-* Kernels and launch configuration
+Read the following carefully:
+
+* **Chapter 5 — Programming Model**
+  * Section 5.1 (Kernels)
+  * Section 5.2 (Thread Hierarchy)
+  * Section 5.3 (Memory Hierarchy) — overview only
+  * Section 5.4 (Heterogeneous Programming)
+
+* **Chapter 6 — Programming Interface**
+  * Section 6.1 (Compilation with NVCC)
+  * Section 6.2.2 (Device Memory)
+  * Section 6.2.4 (Shared Memory) — overview only
+
+📄 Link:
+[https://docs.nvidia.com/cuda/cuda-c-programming-guide/](https://docs.nvidia.com/cuda/cuda-c-programming-guide/)
+
+Focus on:
+
+* Thread hierarchy (threads → blocks → grids)
+* Kernel launch syntax and execution configuration
 * Memory transfers and kernel arguments
-* Synchronization primitives
-
-Link:
-[https://docs.nvidia.com/cuda/cuda-programming-guide/](https://docs.nvidia.com/cuda/cuda-programming-guide/)
+* Basic synchronization primitives
 
 ---
 
@@ -40,9 +60,10 @@ Browse and run the introductory examples:
 * `simpleKernel`
 * `matrixMul` (just to inspect, not to implement yet)
 
-GitHub:
+📁 GitHub:
 [https://github.com/NVIDIA/cuda-samples](https://github.com/NVIDIA/cuda-samples)
 
+---
 
 ## **Concepts Covered This Week**
 
@@ -53,6 +74,7 @@ GitHub:
 * Kernel launches and synchronization
 * Basic debugging techniques (printf in kernels, bounds checks)
 
+---
 
 ## **Starter Example**
 
@@ -67,9 +89,9 @@ __global__ void vector_add(const float* a, const float* b, float* c, int n) {
 }
 ```
 
+---
 
 ## **Week 2 Assignment (Overview)**
-
 
 ### **Task 1 — Implement Basic CUDA Kernels**
 
@@ -94,7 +116,7 @@ You do not need to optimize yet.
 
 ### **Task 2 — Grid/Block Design Exploration**
 
-Choose input sizes ( n = 10^3, 10^5, 10^7 ) and experiment with:
+Choose input sizes (n = 10³, 10⁵, 10⁷) and experiment with:
 
 * `blockDim.x = 32, 128, 256, 512`
 * Appropriate `gridDim.x`
@@ -112,14 +134,16 @@ Record:
 Use simple timers:
 
 * `cudaEvent_t` (preferred)
+  
   or
+
 * Python `time.perf_counter()` if embedding CUDA in PyTorch/CuPy
 
 Record execution time for vector addition across different block sizes.
 
 ---
 
-## **Submission Folder**
+##  **Submission Folder**
 
 ```
 week2/
@@ -129,7 +153,22 @@ week2/
  ├── relu.cu
 ```
 
+---
+
 ## Optional but Recommended
 
-* NVIDIA Blog: *Even Easier Introduction to CUDA*
-* Mark Harris: *Optimizing Parallel Reduction in CUDA* (preview for Week 3)
+### **1. NVIDIA Blog — Even Easier Introduction to CUDA**
+
+ Link:
+[https://developer.nvidia.com/blog/even-easier-introduction-cuda/](https://developer.nvidia.com/blog/even-easier-introduction-cuda/)
+
+A friendly walkthrough of your first CUDA program.
+
+---
+
+### **2. Mark Harris — Optimizing Parallel Reduction in CUDA**
+
+Link:
+[https://developer.download.nvidia.com/assets/cuda/files/reduction.pdf](https://developer.download.nvidia.com/assets/cuda/files/reduction.pdf)
+
+Preview for Week 3 — shows how memory access patterns affect performance.
